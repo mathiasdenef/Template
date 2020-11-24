@@ -1,0 +1,31 @@
+<div class="layout-wrapper" (click)="onLayoutClick()"
+     [ngClass]="{'menu-layout-static': layoutMode !== 'overlay',
+				'menu-layout-overlay': layoutMode === 'overlay',
+				'layout-menu-overlay-active': overlayMenuActive,
+				'menu-layout-slim': layoutMode === 'slim',
+				'menu-layout-horizontal': layoutMode === 'horizontal',
+				'layout-menu-static-inactive': this.staticMenuDesktopInactive,
+				'layout-menu-static-active': staticMenuMobileActive,
+                'p-input-filled': inputStyle === 'filled',
+                'p-ripple-disabled': !ripple}">
+
+    <app-topbar></app-topbar>
+
+    <div class="layout-menu-container" [ngClass]="{'layout-menu-dark':darkMenu}" (click)="onMenuClick($event)">
+        <div class="menu-scroll-content">
+            <app-inline-profile *ngIf="profileMode=='inline' && !isHorizontal()"></app-inline-profile>
+            <app-menu></app-menu>
+        </div>
+    </div>
+
+    <div class="layout-main">
+        <router-outlet></router-outlet>
+    </div>
+
+    <div class="layout-mask"></div>
+
+    <app-config></app-config>
+
+    <app-footer></app-footer>
+
+</div>
